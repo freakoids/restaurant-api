@@ -1,2 +1,3 @@
 *.pyc
 myenv
+.DS_Store
