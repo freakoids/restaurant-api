@@ -1,11 +1,11 @@
 from flask import Flask , make_response, jsonify
 from sqlalchemy.orm import sessionmaker
 from api.models.model import init_db
+from api.setting import URL_DB
 from flask_httpauth import HTTPBasicAuth
 #global variables
 app = Flask(__name__)
-#URL_DB = 'postgres://postgres:robus@localhost:5432/restaurantv2'
-URL_DB = 'postgres://postgres:robus@139.59.25.134:5432/restaurantv2'
+
 engine = init_db(URL_DB)
 Session = sessionmaker(bind=engine)
 

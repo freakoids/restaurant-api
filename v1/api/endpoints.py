@@ -56,7 +56,6 @@ def getItemCategory(id):
 #a function to update the item category
 
 @app.route('/api/v1/itemcategories/<int:id>', methods=['PUT'])
-@auth.login_required
 def updateItemCategory(id):
 	'''This function is used to update the item category in the database'''
 	with SessionManager(Session) as session:
@@ -81,7 +80,6 @@ def updateItemCategory(id):
 
 @app.route('/api/v1/itemcategories', methods=['POST'])
 @keyrequire('name', 'extra') #makes sure that these keys are available
-@auth.login_required
 def setItemCategory():
 	name = request.json['name']
 	extra = request.json.get('extra', 'No Information found')
@@ -97,7 +95,6 @@ def setItemCategory():
 
 
 @app.route('/api/v1/itemcategories/<int:id>', methods=['DELETE'])
-@auth.login_required
 def deleteItemCategory(id):
 	with SessionManager(Session) as session:
 		try:
@@ -115,7 +112,6 @@ def deleteItemCategory(id):
 
 @app.route('/api/v1/itemcategories/<int:cat_id>/items', methods=['POST'])
 @keyrequire('name', 'unit_price')
-@auth.login_required
 def setCategoryItem(cat_id):
 	'''This function is used to set the item on the category using the on the given cate id'''
 
@@ -240,7 +236,6 @@ def getCategoryItem(cat_id, item_id):
 
 #updating the category item
 @app.route('/api/v1/itemcategories/<int:cat_id>/items/<int:item_id>', methods=['PUT'])
-@auth.login_required
 def updateCategoryItem(cat_id, item_id):
 	'''This function is used to update the database item.
 	Example : PUT /api/v1/itemcategories/12/items/1 HTTP/1.1
@@ -261,7 +256,6 @@ def updateCategoryItem(cat_id, item_id):
 
 
 @app.route('/api/v1/itemcategories/<int:cat_id>/items/<int:item_id>', methods=['DELETE'])
-@auth.login_required
 def deleteCategoryItem(cat_id, item_id):
 	''' This function will delete the item in the categories
 	Example : DELETE api/v1/itemcategories/12/items/2 HTTP/1.1
